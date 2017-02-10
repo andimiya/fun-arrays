@@ -54,9 +54,14 @@ var roundedDime = dataset.bankBalances
     };
   });
 
-console.log(roundedDime);
 // set sumOfBankBalances to the sum of all amounts in bankBalances
-var sumOfBankBalances = null;
+var sumOfBankBalances = dataset.bankBalances
+  .reduce((prev, curr, i) => {
+    // console.log(prev.amount);
+    return Math.round((parseFloat(prev) + parseFloat(curr.amount)) * 100) / 100;
+  }, 0);
+
+console.log('number', sumOfBankBalances);
 
 /*
   set sumOfInterests to the sum of the 18.9% interest
