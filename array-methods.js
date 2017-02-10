@@ -36,9 +36,6 @@ var roundedDollar = dataset.bankBalances
     };
   });
 
-  // console.log(dataset.bankBalances);
-
-
 /*
   set a the `amount` value for each object in bankBalances
   to the value of `amount` rounded to the nearest 10 cents
@@ -49,8 +46,15 @@ var roundedDollar = dataset.bankBalances
     }
   assign the resulting array to `roundedDime`
 */
-var roundedDime = null;
+var roundedDime = dataset.bankBalances
+  .map((e, i) => {
+    return {
+      amount: (Math.round(e.amount*10))/10,
+      state: e.state
+    };
+  });
 
+console.log(roundedDime);
 // set sumOfBankBalances to the sum of all amounts in bankBalances
 var sumOfBankBalances = null;
 
