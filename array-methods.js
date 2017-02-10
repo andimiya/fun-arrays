@@ -61,8 +61,6 @@ var sumOfBankBalances = dataset.bankBalances
     return Math.round((parseFloat(prev) + parseFloat(curr.amount)) * 100) / 100;
   }, 0);
 
-console.log('number', sumOfBankBalances);
-
 /*
   set sumOfInterests to the sum of the 18.9% interest
   for all amounts in bankBalances
@@ -75,7 +73,17 @@ console.log('number', sumOfBankBalances);
     Delaware
   the result should be rounded to the nearest cent
  */
-var sumOfInterests = null;
+
+var sumOfInterests = dataset.bankBalances
+
+    'WI',
+    'IL',
+    'WY',
+    'OH',
+    'GA',
+    'DE'
+  };
+
 
 /*
   set sumOfHighInterests to the sum of the 18.9% interest
