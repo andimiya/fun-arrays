@@ -76,15 +76,6 @@ var sumOfBankBalances = dataset.bankBalances
 
 var sumOfInterests = dataset.bankBalances
 
-    'WI',
-    'IL',
-    'WY',
-    'OH',
-    'GA',
-    'DE'
-  };
-
-
 /*
   set sumOfHighInterests to the sum of the 18.9% interest
   for all amounts in bankBalances
@@ -109,7 +100,42 @@ var sumOfHighInterests = null;
     and the value is the sum of all amounts from that state
       the value must be rounded to the nearest cent
  */
-var stateSums = null;
+var stateSums = dataset.bankBalances
+  .reduce((accounts, currentAccount) => {
+    if ( !accounts.hasOwnProperty( currentAccount.state) ) {
+      accounts[currentAccount.state] = 0;
+    }
+
+    accounts[currentAccount.state] += parseFloat(currentAccount.amount);
+
+    //round to cents
+    // accounts [currentAccount.state] = Math.round()
+
+    return accounts;
+}, {});
+
+var sumOfHighInterests = Object.keys(stateSums)
+  .filter((state) => ['WI', 'IL', 'WY', 'OH', 'GA', 'DE'].indexOf( state) === -1)
+
+//convert amount to be the interest
+  .map((state) => {
+    return {
+      state: state,
+      interest: Math.round(stateSums[state] * 18.9) / 100
+    };
+  })
+
+//use only interest amounts that are greater than 50,000
+  .filter ((account) => {
+    return account.interest > 50000;
+  })
+
+//add all the states interests together
+  .reduce((prevInterest, currInterest) => {
+    return Math.round((prevInterest + currInterest.interest) * 100) / 100;
+  }, 0);
+
+console.log(sumOfHighInterests);
 
 /*
   set lowerSumStates to an array containing
