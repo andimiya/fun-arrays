@@ -75,6 +75,17 @@ var sumOfBankBalances = dataset.bankBalances
  */
 
 var sumOfInterests = dataset.bankBalances
+  .filter((state) => ['WI', 'IL', 'WY', 'OH', 'GA', 'DE'].indexOf( state) === -1)
+  .map((state) => {
+    return {
+      state,
+      interest: Math.round(state.amount * 18.9) / 100
+    };
+  })
+  .reduce((prev, curr) => prev + curr.interest, 0);
+
+  sumOfInterests = Math.round(sumOfInterests * 100) / 100;
+
 
 /*
   set sumOfHighInterests to the sum of the 18.9% interest
