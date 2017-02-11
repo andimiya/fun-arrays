@@ -26,4 +26,4 @@ Fulfill the requirements using iterative Array methods.
 
 ## References
 
-[Making Arrays More Functional](http://slides.com/jasonsewell/making-arrays-more-functional)# email-log
+[Making Arrays More Functional](http://slides.com/jasonsewell/making-arrays-more-functional)
